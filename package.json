@@ -1,0 +1,25 @@
+{
+  "name": "ada-solar",
+  "version": "1.0.0",
+  "description": "A.D.A Solar - Solar Energy Management System",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=backend & npm start --workspace=frontend",
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:frontend": "npm start --workspace=frontend",
+    "build": "npm run build --workspace=backend && npm run build --workspace=frontend",
+    "build:backend": "npm run build --workspace=backend",
+    "build:frontend": "npm run build --workspace=frontend"
+  },
+  "keywords": [
+    "solar",
+    "energy",
+    "management"
+  ],
+  "author": "",
+  "license": "MIT"
+}
