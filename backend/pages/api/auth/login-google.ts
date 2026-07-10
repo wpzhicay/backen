@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import jwt from 'jsonwebtoken';
 import { OAuth2Client } from 'google-auth-library';
+import { enableCors } from '../../../lib/cors';
 
 const prisma = new PrismaClient();
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -10,6 +11,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  // Habilitar CORS
+  if (enableCors(req, res)) return;
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Método no permitido' });
   }

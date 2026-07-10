@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { enableCors } from '../../../lib/cors';
 
 const prisma = new PrismaClient();
 
@@ -9,6 +10,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  // Habilitar CORS
+  if (enableCors(req, res)) return;
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Método no permitido' });
   }
